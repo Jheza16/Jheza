@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JEZAKAKA Command Trigger</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .command-box {
+      margin-top: 20px;
+      background-color: #eee;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      display: none;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ketik "JEZAKAKA"</h1>
+  <input type="text" id="triggerInput" placeholder="Ketik di sini..." />
+  <div class="command-box" id="commandBox">
+    <div id="commandText">certutil -generateSSTFromWU "%USERPROFILE%\Desktop\roots.sst"</div>
+    <button onclick="copyCommand()">Salin Perintah</button>
+  </div>
+
+  <script>
+    const input = document.getElementById("triggerInput");
+    const box = document.getElementById("commandBox");
+    const command = document.getElementById("commandText");
+
+    input.addEventListener("input", () => {
+      if (input.value.trim().toUpperCase() === "JEZAKAKA") {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
+    });
+
+    function copyCommand() {
+      const text = command.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Perintah berhasil disalin!");
+      });
+    }
+  </script>
+</body>
+</html>
